@@ -7,24 +7,28 @@
     .\install_dev_tools.ps1
 #>
 
-Write-Host "`n=== Windows Dev Tools Installer ===`n" -ForegroundColor Cyan
+# --- UTF-8 Ausgabe aktivieren ---
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-# --- Voraussetzung prüfen: Winget ---
+Write-Host "`n=== 🧰 Windows Dev Tools Installer ===`n" -ForegroundColor Cyan
+
+# --- Winget prüfen ---
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     Write-Host "❌ Winget nicht gefunden. Bitte installiere das App Installer-Paket aus dem Microsoft Store und starte PowerShell neu." -ForegroundColor Red
     exit 1
 }
 
-# --- Liste der Tools ---
+# --- Zu installierende Tools ---
 $apps = @(
     @{ Name = "VMware Workstation Pro"; Id = "VMware.WorkstationPro" },
     @{ Name = "Visual Studio Code"; Id = "Microsoft.VisualStudioCode" },
-    @{ Name = "Sublime Text"; Id = "SublimeHQ.SublimeText.4" }
+    @{ Name = "Sublime Text 4"; Id = "SublimeHQ.SublimeText.4" }
 )
 
 foreach ($app in $apps) {
     Write-Host "`n➡️  Installiere $($app.Name)..." -ForegroundColor Cyan
     $installed = winget list --id $($app.Id) 2>$null | Select-String $app.Id
+
     if ($installed) {
         Write-Host "   ✅ Bereits installiert: $($app.Name)" -ForegroundColor Green
     } else {
@@ -37,7 +41,6 @@ foreach ($app in $apps) {
     }
 }
 
-# --- Nacharbeiten ---
-Write-Host "`n=== Installation abgeschlossen ===" -ForegroundColor Green
-Write-Host "Starte ggf. dein System neu, wenn VMware-Treiber installiert wurden." -ForegroundColor Yellow
-Write-Host "Tipp: Du kannst die Tools später mit 'winget upgrade' aktuell halten." -ForegroundColor Cyan
+Write-Host "`n=== ✅ Installation abgeschlossen ===" -ForegroundColor Green
+Write-Host "💡 Starte dein System ggf. neu, wenn VMware-Treiber installiert wurden." -ForegroundColor Yellow
+Write-Host "🧩 Tipp: Du kannst alle Tools später mit 'winget upgrade' aktuell halten." -ForegroundColor Cyan
