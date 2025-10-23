@@ -3,7 +3,35 @@
 Skriptsammlung zur Optimierung, Reparatur und Automatisierung von Windows 11 DevOps-Systemen.  
 Ermöglicht eine stabile, performante und saubere Umgebung für VMware, PowerShell 7, RDP, VS Code und allgemeine Entwickler-Workflows.  
 Alle Skripte sind **PowerShell-basiert**, **offline-fähig** und **ohne Telemetrie**.
+---
 
+## ⚙️ Windows DevOps Tuning Toolkit
+
+Diese Sammlung enthält alle PowerShell-Skripte zur Optimierung, Wartung und Einrichtung deiner Windows DevOps-Umgebung.
+
+| 🧩 Skriptname | 📝 Beschreibung | 💻 Beispielbefehl | 🔒 Admin nötig |
+|---------------|----------------|-------------------|----------------|
+| **vmware_ready_check.ps1** | Prüft & repariert Windows-Konfiguration für volle VMware-Virtualisierung (VT-x / VT-d) | `.\vmware_ready_check.ps1 -Fix` | ✅ |
+| **update_powershell_latest.ps1** | Installiert oder aktualisiert PowerShell auf die neueste stabile Version | `.\update_powershell_latest.ps1` | ✅ |
+| **set_pwsh_default.ps1** | Setzt PowerShell 7 als Standard-Shell in Windows Terminal & VS Code | `.\set_pwsh_default.ps1` | ✅ |
+| **remove_legacy_powershell.ps1** | Entfernt alte Windows PowerShell-Verknüpfungen aus dem Startmenü | `.\remove_legacy_powershell.ps1` | ✅ |
+| **restore_classic_context_menu.ps1** | Aktiviert das klassische Windows-10-Kontextmenü unter Windows 11 | `.\restore_classic_context_menu.ps1 -Enable` | ✅ |
+| **install_dev_tools.ps1** | Installiert VMware Workstation Pro, VS Code & Sublime Text 4 über Winget | `.\install_dev_tools.ps1` | ✅ |
+| **reset_windows_pin.ps1** | Entfernt beschädigte Windows-PIN-Anmeldedaten (Hello-Fix) | `.\reset_windows_pin.ps1` | ✅ |
+| **rdp_check_and_fix.ps1** | Prüft & repariert Remotedesktop-Dienste & Firewall-Regeln | `.\rdp_check_and_fix.ps1 -Fix` | ✅ |
+| **setup_windows_devops.ps1** | Führt alle DevOps-Setup-Skripte in sinnvoller Reihenfolge aus | `.\setup_windows_devops.ps1` | ✅ |
+| **list_autostart.ps1** | Listet alle Autostart-Programme aus Registry & Startup-Ordnern<br>Optional mit HTML-Report | `.\list_autostart.ps1 -HtmlReport` | ❌ |
+
+---
+
+📁 **Tipp:**  
+Alle Skripte liegen in `C:\Tools\windows_devops_tuning` und sind UTF-8-kodiert.  
+Falls du dein System neu aufsetzt, kannst du einfach das Repo neu klonen und `setup_windows_devops.ps1` ausführen.
+
+```powershell
+git clone https://github.com/DerMilchjieper/windows_devops_tuning.git "C:\Tools\windows_devops_tuning"
+cd C:\Tools\windows_devops_tuning
+pwsh -ExecutionPolicy Bypass -File .\setup_windows_devops.ps1
 ---
 
 ## 🚀 Schnellstart
